@@ -1,0 +1,11 @@
+using UnityEngine;
+
+[System.Serializable]
+
+public class DialogueLine : MonoBehaviour
+{
+    public string speakerName;
+    [TextArea(1, 3)] // länge der Textzeilen
+    public string dialogueText;
+    public Sprite speakerPortrait;
+}
