@@ -1,0 +1,67 @@
+CoolesGame – Projektbeschreibung
+================================
+
+CoolesGame ist ein früher 2D-Mobile-Prototyp in Unity (Editor 6000.6.5, also Unity 6)
+aus dem Hochschul-Gameprojekt. Es gibt eine Szene, eine Figur und ein funktionierendes
+Dialogsystem, aber noch kein eigentliches Gameplay.
+
+
+Inhalt
+------
+- Schauplatz: Der Hintergrund ist ein echter architektonischer Grundriss
+  ("Grundriss EG", Maßstab 1:100) mit nummerierten Räumen (M EG 0.01 bis 0.11) und
+  einem runden Treppenturm, aufgeteilt in zwei Hälften (groundFloor_left /
+  groundFloor_right). Das Spiel scheint in einem realen Gebäude zu spielen.
+- Figur: Euphemia, eine handgezeichnete, ausgeschnittene Papierfigur (fuchsartiges
+  Wesen mit weißer Haarpracht und rosa Kleid). Die Musterbeklammern an den Gelenken
+  deuten auf eine Gliederpuppe hin, also einen Papercraft-Look. Sie ist bisher die
+  einzige Sprecherin im Dialogfenster.
+- Zielplattform: Android und iOS. Ein fertiger Build liegt unter
+  Build/cooles-game.apk (ca. 33 MB).
+
+
+Technik
+-------
+- Lean Touch (Plugin von Carlos Wilkes) für die Touch-Steuerung
+- TextMesh Pro für Text
+- URP 2D mit 2D-Licht
+
+Eigene Skripte (Assets/Scripts):
+- DialogueManager.cs: Zeigt Dialoge Buchstabe für Buchstabe an (Schreibmaschinen-
+  Effekt) mit Name, Text und Porträt. Mit "Jump" (Leertaste) geht es zur nächsten Zeile.
+- DialogueNPC.cs: Startet einen Dialog, wenn der Spieler im Trigger-Bereich einer
+  Figur ist und die Taste drückt.
+- DialogueLine.cs: Eine einzelne Dialogzeile (Sprecher, Text, Porträt).
+- CameraBorders.cs: Hält die Kamera innerhalb des Hintergrundbilds. Das Ziehen mit
+  der Maus (Panning) ist im Code gerade auskommentiert.
+
+
+Projektstand (Git)
+------------------
+Commits:
+- "Plugin Lean Touch und Map eingefügt"
+- "Einstellungen verbessert"
+- "UI-Dialogsystem + Input auf Kamera ausgelagert"
+
+Branches: main, programming, art, prototyping-testing, bugfix
+
+Hinweis: Im README steht "3. Semester project", der Ordner liegt aber unter
+4. Semester.
+
+
+Bekannte Fehler
+---------------
+- Klassenname: In CameraBorders.cs heißt die Klasse CameraController2D. Unity
+  verlangt, dass Datei- und Klassenname gleich sind, sonst lässt sich das Skript
+  nicht an ein Objekt hängen.
+- DialogueLine: Die Klasse erbt von MonoBehaviour. Deshalb kann man die Zeilen nicht
+  direkt im Inspector als Liste eintippen. Sie sollte eine normale
+  [System.Serializable]-Klasse ohne MonoBehaviour sein.
+- Überspringen: isTyping wird nie auf true gesetzt. Dadurch funktioniert das
+  Überspringen des Schreibeffekts nicht, und ein Tastendruck während des Tippens
+  springt direkt zur nächsten Zeile.
+- Trigger: OnTriggerExit2D setzt playerInRange nicht zurück. Ist man einmal in der
+  Nähe gewesen, lässt sich der Dialog von überall starten.
+- Eingabe: Dialoge reagieren nur auf die Taste "Jump". Lean Touch wird importiert,
+  aber nicht benutzt; auf dem Handy kann man den Dialog also noch nicht per Tippen
+  weiterschalten.
