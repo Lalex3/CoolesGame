@@ -7,11 +7,10 @@ public class CameraBorder : MonoBehaviour
     public SpriteRenderer map;
     public float maxScale = 3f;   // wie weit man maximal reinzoomen darf
 
-    
 
+    //Befor the Script is Running the mainCamera is feched if no other Camera is put in the Inspector
     void Awake()
     {
-
         if (cam == null) cam = Camera.main;
     }
 
