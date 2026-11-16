@@ -1,10 +1,14 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using ZXing;
 
 
 public class MobileCameraManager : MonoBehaviour
 {
+    // Varibales for camera visablity
     private WebCamTexture backCam;
     private Texture defaultBackground;
     
@@ -12,11 +16,12 @@ public class MobileCameraManager : MonoBehaviour
 
     public RawImage background;
 
-
-  
-
+    public GameObject camera;
 
 
+    // Varibles for qr-code scanner
+    private BarcodeReader reader = new BarcodeReader();   
+    private bool questFound = false;
 
 
     void Update()
@@ -27,6 +32,7 @@ public class MobileCameraManager : MonoBehaviour
         RotateImage();
         FlipImage();
         ResizeImage();
+        ScanQRCode();
     }
 
 
@@ -70,6 +76,50 @@ public class MobileCameraManager : MonoBehaviour
         float imageHeight = imageWidth / cameraRatio;
 
         background.rectTransform.sizeDelta = new Vector2(imageWidth, imageHeight);
+    }
+
+    private void ScanQRCode()
+    {
+        if (questFound) return;
+        if (Time.frameCount % 15 != 0) return;   // only every 15 frames
+
+        Result result = reader.Decode(backCam.GetPixels32(), backCam.width, backCam.height);
+        if (result == null) return;              // no QR code in the image
+
+        string text = result.Text.Trim();
+
+        switch (text)
+        {
+            case "Euphemia":
+                StartQuest("EuphemiaQuest");
+                break;
+
+            case "Architekt":
+                StartQuest("ArchitektQuest");
+                break;
+
+            case "Quest3":
+                StartQuest("Quest3");
+                break;
+
+            case "Quest4":
+                StartQuest("Quest4");
+                break;
+
+            default:
+                // text is not in the list -> ignore it and keep scanning
+                return;
+        }
+
+    }
+
+    // remembers the quest and goes back to the MainScene
+    void StartQuest(string questName)
+    {
+        questFound = true;
+        GameState.activeQuest = questName;
+        Debug.Log("Quest started: " + questName);
+        OnBackClick();   // your existing method
     }
 
 
@@ -116,5 +166,17 @@ public class MobileCameraManager : MonoBehaviour
         }
         
         
+    }
+
+
+    public void OnBackClick()
+    {
+
+        if (backCam != null)
+        {
+            backCam.Stop();
+        }
+        SceneManager.LoadScene("MainScene");
+
     }
 }
