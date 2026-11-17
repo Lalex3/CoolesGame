@@ -13,7 +13,7 @@ public class StartMenuManager : MonoBehaviour
    public void OnExitClick()
     {
 
-// Quitting the Unity Editor or the Game if runnign on a device
+// Quitting the Unity Editor or the Game if running on a device
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif

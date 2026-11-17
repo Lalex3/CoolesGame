@@ -1,0 +1,11 @@
+{
+"version":3,
+"commands":[
+{"yarnName":"clear_slide","definitionName":"global::Yarn.Unity.Samples.Slideshow.ClearSlide","fileName":"CoolesGame\\Assets\\Samples\\Yarn Spinner Samples\\3.2.4\\Welcome\\Scripts\\Slideshow.cs","language":"csharp","async":false,"containsErrors":false,"location":{"start":{"line":140,"character":27},"end":{"line":140,"character":37}},"parameters":[]},
+{"yarnName":"end_slide","definitionName":"global::Yarn.Unity.Samples.Slideshow.EndSlide","fileName":"CoolesGame\\Assets\\Samples\\Yarn Spinner Samples\\3.2.4\\Welcome\\Scripts\\Slideshow.cs","language":"csharp","async":true,"containsErrors":false,"location":{"start":{"line":106,"character":37},"end":{"line":106,"character":45}},"parameters":[]},
+{"yarnName":"start_slide","definitionName":"global::Yarn.Unity.Samples.Slideshow.StartSlide","fileName":"CoolesGame\\Assets\\Samples\\Yarn Spinner Samples\\3.2.4\\Welcome\\Scripts\\Slideshow.cs","language":"csharp","async":true,"containsErrors":false,"location":{"start":{"line":70,"character":31},"end":{"line":70,"character":41}},"parameters":[]}
+],
+"functions":[
+
+]
+}
