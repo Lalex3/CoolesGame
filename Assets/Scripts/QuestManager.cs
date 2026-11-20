@@ -33,6 +33,8 @@ public class QuestManager : MonoBehaviour
     public DialogueRunner dialogueRunner;
 
     [SerializeField] public GameObject ui;
+    [SerializeField] public CanvasGroup linePresenter;
+ 
 
     async public void EuphemiaQuest()
     {
@@ -41,9 +43,13 @@ public class QuestManager : MonoBehaviour
         if (!dialogueRunner.GetComponent<DialogueRunner>().IsDialogueRunning)
         {
             ui.SetActive(false);
+            linePresenter.blocksRaycasts = true;
+       
 
             await dialogueRunner.GetComponent<DialogueRunner>().RunDialogue("Start");
 
+           
+            linePresenter.blocksRaycasts = false;
             ui.SetActive(true);
         }
     }
