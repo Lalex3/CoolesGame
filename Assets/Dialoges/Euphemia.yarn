@@ -1,11 +1,10 @@
 ﻿title: Start
 ---
-This is an example of a Yarn Spinner script. Write your dialogue here!
-Euphemia: UwU
-Euphelia: OwO
--> UwU
-  Euphemia: yiiieeeepi
--> OwO
-  Euphelia: yiiieeeepi
-test: uff
+Euphemia: Ich habe mein Kleid verloren.
+Euphemia: Kannst du mir helfen es zu finden?
+-> Ja
+  Euphemia: Dankkeee
+-> Nein
+  Euphelia: Sicher?
+Euphemia: Danke!
 ===
