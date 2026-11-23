@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Yarn;
 using Yarn.Unity;
-using Yarn.Unity.Editor;
+//using Yarn.Unity.Editor;
 
 public class QuestManager : MonoBehaviour
 {

@@ -80,11 +80,13 @@ public class MobileCameraManager : MonoBehaviour
 
     private void ScanQRCode()
     {
+        // fallback if camera not found
         if (questFound) return;
-        if (Time.frameCount % 15 != 0) return;   // only every 15 frames
-
+        // Uses QRCode scan every 15 Frames to save energie
+        if (Time.frameCount % 15 != 0) return;   
         Result result = reader.Decode(backCam.GetPixels32(), backCam.width, backCam.height);
-        if (result == null) return;              // no QR code in the image
+        // fallback if no QR Code in the iamge
+        if (result == null) return;             
 
         string text = result.Text.Trim();
 
@@ -107,7 +109,7 @@ public class MobileCameraManager : MonoBehaviour
                 break;
 
             default:
-                // text is not in the list -> ignore it and keep scanning
+                // Fallback if text is not in the list -> ignore it and keep scanning
                 return;
         }
 
@@ -119,7 +121,7 @@ public class MobileCameraManager : MonoBehaviour
         questFound = true;
         GameState.activeQuest = questName;
         Debug.Log("Quest started: " + questName);
-        OnBackClick();   // your existing method
+        OnBackClick();   
     }
 
 
@@ -129,10 +131,11 @@ public class MobileCameraManager : MonoBehaviour
     {
         defaultBackground = background.texture;
         WebCamDevice[] devices = WebCamTexture.devices;
+        // camAvailable = false;
         if (devices.Length == 0)
         {
             Debug.Log("No camera detected");
-            // camAvailable = false;
+
             return;
         }
 
@@ -171,7 +174,7 @@ public class MobileCameraManager : MonoBehaviour
 
     public void OnBackClick()
     {
-
+        // Close Camera if still aktiv
         if (backCam != null)
         {
             backCam.Stop();
