@@ -90,6 +90,7 @@ public class MobileCameraManager : MonoBehaviour
 
         string text = result.Text.Trim();
 
+        // Strings for what the scanner is looking for
         switch (text)
         {
             case "Euphemia":
